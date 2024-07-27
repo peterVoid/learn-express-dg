@@ -3,10 +3,10 @@ import path from "path";
 import cors from "cors";
 import url from "url";
 import { logger } from "./middleware/logEvents.js";
-import { errorHandler } from "./middleware/errorHandler.js";
 import subDirRoute from "./routes/subDir.js";
 import rootRoute from "./routes/root.js";
 import rootEmployees from "./routes/api/employees.js";
+import { corsOptions } from "./config/corsOptions.js";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -17,24 +17,10 @@ const __dirname = path.dirname(__filename);
 // custom middleware logger
 app.use(logger);
 
-// Cross Origin Resource Sharing
-const whiteList = ["http://localhost:8000", "https://www.google.com"];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (whiteList.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  optionsSuccessStatus: 200,
-};
+// THIRD PARTY MIDDLEWARE
 app.use(cors(corsOptions));
 
-// built-in middleware to handle urlencoded data
-// in other word, form data:
-// 'content-type: application/x-www-form-urlencoded'
+// built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({ extended: false }));
 
 // built-in middleware for json
@@ -42,10 +28,8 @@ app.use(express.json());
 
 // serve static files -> such as css file
 app.use("/", express.static(path.join(__dirname, "/public")));
-app.use("/subdir", express.static(path.join(__dirname, "/public")));
 
 app.use("/", rootRoute);
-app.use("/subdir", subDirRoute);
 app.use("/employee", rootEmployees);
 
 // app.all("*", (req, res) => {
