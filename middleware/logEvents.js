@@ -3,10 +3,7 @@ import { v4 as uuid } from "uuid";
 import fs from "fs";
 import path from "path";
 import fsPromises from "fs/promises";
-import url from "url";
-
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { __dirname } from "../lib/routeFs.js";
 
 export const logEvents = async (message, logName) => {
   const dateTime = `${format(new Date(), "yyyyMMdd\tHH:mm:ss")}`;

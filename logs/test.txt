@@ -236,3 +236,15 @@
 20240727	14:09:21	51db6137-5f9c-4fe6-9247-3a29bf20e9f3	GET	undefined	/employee
 20240727	14:09:24	f80c14e5-f233-44af-86cb-8ccbfffb145c	POST	undefined	/employee
 20240727	14:09:24	d22c3fc4-5cce-4bee-8679-2aac6c04763d	GET	undefined	/employee
+20240727	15:06:29	1eeaac8f-98b8-447b-9ec2-e7e795ca226b	GET	undefined	/employee
+20240727	15:08:48	20913263-8917-413e-9ddd-b41515b81ef8	POST	undefined	/register
+20240727	15:09:59	1480823c-63b6-4ab3-a373-29161068aaf3	POST	undefined	/register
+20240727	15:10:03	0b670052-431c-459a-94d1-d80ff322387d	POST	undefined	/register
+20240727	15:24:25	1a952df3-fb95-4db8-b1c6-2fb7f5db2648	GET	undefined	/employee
+20240727	15:25:38	4a2b1130-0453-4333-8de3-eff22d628470	POST	undefined	/auth
+20240727	15:25:50	fa8e9b28-9a90-4225-9524-deee90af5152	POST	undefined	/auth
+20240727	15:25:51	11c2d2d8-25f7-41a4-a85c-afaf83d7f782	POST	undefined	/auth
+20240727	15:26:16	c3b50951-69a2-4306-91e7-b4319e01b3d8	POST	undefined	/auth
+20240727	15:26:36	28ae28ba-7cf4-4788-8bb6-779d63a9c163	POST	undefined	/register
+20240727	15:27:08	beddf0e2-ff11-468d-857f-d60afc40a942	POST	undefined	/auth
+20240727	15:27:18	5ecca3cd-6561-4e4c-872c-9b7a35c8d85b	POST	undefined	/auth

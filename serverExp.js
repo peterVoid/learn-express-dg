@@ -1,18 +1,16 @@
 import express from "express";
 import path from "path";
 import cors from "cors";
-import url from "url";
 import { logger } from "./middleware/logEvents.js";
-import subDirRoute from "./routes/subDir.js";
 import rootRoute from "./routes/root.js";
 import rootEmployees from "./routes/api/employees.js";
+import rootRegister from "./routes/register.js";
+import rootAuth from "./routes/auth.js";
 import { corsOptions } from "./config/corsOptions.js";
+import { __dirname } from "./lib/routeFs.js";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
-
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // custom middleware logger
 app.use(logger);
@@ -31,6 +29,8 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", rootRoute);
 app.use("/employee", rootEmployees);
+app.use("/register", rootRegister);
+app.use("/auth", rootAuth);
 
 // app.all("*", (req, res) => {
 //   res.status(404);
