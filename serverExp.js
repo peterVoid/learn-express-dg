@@ -8,6 +8,7 @@ import rootRegister from "./routes/register.js";
 import rootAuth from "./routes/auth.js";
 import { corsOptions } from "./config/corsOptions.js";
 import { __dirname } from "./lib/routeFs.js";
+import { verifyJWT } from "./middleware/verifyJWT.js";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -28,9 +29,11 @@ app.use(express.json());
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", rootRoute);
-app.use("/employee", rootEmployees);
 app.use("/register", rootRegister);
 app.use("/auth", rootAuth);
+
+app.use(verifyJWT);
+app.use("/employee", rootEmployees);
 
 // app.all("*", (req, res) => {
 //   res.status(404);
