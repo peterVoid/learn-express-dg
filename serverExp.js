@@ -6,9 +6,11 @@ import rootRoute from "./routes/root.js";
 import rootEmployees from "./routes/api/employees.js";
 import rootRegister from "./routes/register.js";
 import rootAuth from "./routes/auth.js";
+import rootRefresh from "./routes/refresh.js";
 import { corsOptions } from "./config/corsOptions.js";
 import { __dirname } from "./lib/routeFs.js";
 import { verifyJWT } from "./middleware/verifyJWT.js";
+import cookieParser from "cookie-parser";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -25,12 +27,16 @@ app.use(express.urlencoded({ extended: false }));
 // built-in middleware for json
 app.use(express.json());
 
+// middleware for cookie
+app.use(cookieParser());
+
 // serve static files -> such as css file
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", rootRoute);
 app.use("/register", rootRegister);
 app.use("/auth", rootAuth);
+app.use("/refresh", rootRefresh);
 
 app.use(verifyJWT);
 app.use("/employee", rootEmployees);
