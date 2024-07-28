@@ -7,16 +7,22 @@ import rootEmployees from "./routes/api/employees.js";
 import rootRegister from "./routes/register.js";
 import rootAuth from "./routes/auth.js";
 import rootRefresh from "./routes/refresh.js";
+import rootLogout from "./routes/logout.js";
 import { corsOptions } from "./config/corsOptions.js";
 import { __dirname } from "./lib/routeFs.js";
 import { verifyJWT } from "./middleware/verifyJWT.js";
 import cookieParser from "cookie-parser";
+import { credentials } from "./middleware/credentials.js";
 
 const PORT = process.env.PORT || 8000;
 const app = express();
 
 // custom middleware logger
 app.use(logger);
+
+// Handle options credentials check - before CORS!
+// and fetch cookies credentials requirement
+app.use(credentials);
 
 // THIRD PARTY MIDDLEWARE
 app.use(cors(corsOptions));
@@ -37,6 +43,7 @@ app.use("/", rootRoute);
 app.use("/register", rootRegister);
 app.use("/auth", rootAuth);
 app.use("/refresh", rootRefresh);
+app.use("/logout", rootLogout);
 
 app.use(verifyJWT);
 app.use("/employee", rootEmployees);
